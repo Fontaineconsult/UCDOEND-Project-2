@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Udacity Project 2
+Parameters:
+  EnvironmentName:
+    Description: Single Parameter that we are passing with the env name.
+    Type: String
+    Default: UCDOEN-Project-2
+
+  VpcCIDR:
+    Description: CIDR Block for VPC
+    Type: String
+    Default: 10.0.0.0/16
+
+  PublicSubnet1CIDR:
+    Description: "PublicSubnet1CIDR"
+    Type: String
+    Default: 10.0.0.0/24
+
+  PublicSubnet2CIDR:
+    Description: "PublicSubnet2CIDR"
+    Type: String
+    Default: 10.0.1.0/24
+
+  PrivateSubnet1CIDR:
+    Description: "PrivateSubnet1CIDR"
+    Type: String
+    Default: 10.0.2.0/24
+
+  PrivateSubnet2CIDR:
+    Description: "PrivateSubnet2CIDR"
+    Type: String
+    Default: 10.0.3.0/24
+
+Resources:
+
+  ServerStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: NetworkStack
+    Properties:
+      TemplateURL: https://ucdoend-project2-cf-templates.s3-us-west-2.amazonaws.com/servers-stack.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+  NetworkStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://ucdoend-project2-cf-templates.s3-us-west-2.amazonaws.com/network-layer-stack.yaml
+      Parameters:
+        EnvironmentName: !Ref EnvironmentName
+
+
