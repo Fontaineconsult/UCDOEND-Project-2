@@ -7,7 +7,7 @@ Running this project will deploy AWS infrastructure via a CloudFormation script.
 In order to run:
 
 1. Put all Files in a folder
-2. With a configured AWS account and AWS CLI instaleld, Run the following command in a windows:
+2. With a configured AWS account and AWS CLI installed, Run the following command in a windows terminal:
 
   cmd.exe /c create.bat "Udacity-Project-2" Udacity_Project_2.yaml Project_2_Parameters.json
 
